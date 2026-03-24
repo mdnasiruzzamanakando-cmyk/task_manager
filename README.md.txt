@@ -1,8 +1,3 @@
-Perfect! Here’s a **short, professional, submission-ready README** you can add to your GitHub repo for your instructor. It’s concise, clear, and highlights everything needed in **one page**:
-
----
-
-```markdown id="x2n5qf"
 # Student Task Manager Project
 Shaoxing University – Computer Science Department  
 Course: Software Engineering  
