@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Student Dashboard</h2>
+
+    <!-- Semester Filter / Auto Assign -->
+    <form method="get" class="filter-form">
+        <label for="semester_filter">Select Semester:</label>
+        <select name="semester_filter" id="semester_filter">
+            <option value="">All Semesters</option>
+            <option value="Semester 1" {% if semester_filter=="Semester 1" %}selected{% endif %}>Semester 1</option>
+            <option value="Semester 2" {% if semester_filter=="Semester 2" %}selected{% endif %}>Semester 2</option>
+        </select>
+        <button>Load Tasks</button>
+    </form>
+
+    <!-- Add Manual Task -->
+    <form method="post" class="add-task-form">
+        <input name="new_task" placeholder="Add New Task" required>
+        <select name="semester_add">
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+        </select>
+        <button>Add Task</button>
+    </form>
+
+    <!-- Task Cards -->
+    <div class="task-cards">
+    {% for task in tasks %}
+        <div class="task-card {% if task[2]=='Done' %}done{% else %}pending{% endif %}">
+            <h3>{{ task[1] }}</h3>
+            <p>Status: {{ task[2] }}</p>
+            <div class="card-actions">
+                {% if task[2]=='Pending' %}
+                <a href="/complete/{{ task[0] }}">Mark Done</a>
+                {% endif %}
+                <a href="/delete/{{ task[0] }}">Delete</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <a href="/logout" class="logout">Logout</a>
+</div>
+</body>
+</html>
